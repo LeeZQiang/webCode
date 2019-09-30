@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy Birthday my teacher Gu ~~~</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        /* body { */
+        /* body {
+            padding: 0;
+            margin: 0;
+            background: url(./images/WechatIMG9.jpeg) 0 0 no-repeat scroll transparent;
+            background-size: cover;
+            width:100%;
+        } */
+body {
+        /* /*background-image: url(images/bg2.jpg);
+        background-position: center top; */
+        background-repeat: no-repeat; 
+        /*backgroung: 背景颜色 背景图片地址 背景平铺 背景滚动 背景位置;*/
+        background: #fff url(./images/WechatIMG9.jpg) fixed center top;
+         
+    }
+        #app {
+            padding-top: 500px;
+        }
+
+        #app li {
+            list-style: none;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 400;
+            text-align: center;
+            color: #fff;
+
+        }
+
+        p {
+            width: 100%;
+            display:inline-block;
+            text-align:center;
+        }
+
+        #app #title {
+            text-align: center;
+            font-size: 80px;
+            color: pink;
+            height: 100px;
+        }
+
+        #web_bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 1000px;
+            z-index: -10;
+            zoom: 1;
+            background-color: #fff;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+        }
+
+        .nav a {
+            display: inline-block;
+            color: #fff;
+            font-size: 30px;
+            text-align: center;
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 100%;
+            text-decoration: none;
+            background: rgba(125, 0, 0, 0.4);
+        }
+
+        .nav a:hover {
+            color: #000;
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="nav">
+            <a href="#">2019.09.20</a>
+        </div>
+        <div id="ceremonyTime">
+            <li id="title">{{ msg }}</li>
+            <li>{{beginTime | dateFormat }}</li>
+            <li>{{todayTime | dateFormat }}</li>
+            <li>在一起已经：{{daysLast}}</li><br>
+            <li>下面直奔主题哦</li>
+            <p>
+                <img src="./images/给顾老师的一封信_页面_1.png" alt="">
+            </p>
+            <p><img src="./images/给顾老师的一封信_页面_2.png" alt=""></p>
+            <p><img src="./images/给顾老师的一封信_页面_3.png" alt=""></p>
+            <p><img src="./images/给顾老师的一封信_页面_4.png" alt=""></p>
+            <p><img src="./images/给顾老师的一封信_页面_5.png" alt=""></p>
+            <p><img src="./images/给顾老师的一封信_页面_6.png" alt=""></p>
+            <p><img src="./images/给顾老师的一封信_页面_7.png" alt=""></p>
+            <p><img src="./images/给顾老师的一封信_页面_8.png" alt=""></p>
+            <p-><img src="https://thumbnail0.baidupcs.com/thumbnail/9f1c133bdebe7e457f507eaa26c31516?fid=4248603687-250528-698841693757400&time=1568865600&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ya6cGPQA29nQnGAE%2Bnvh8pmUf5w%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=6065709300648663790&dp-callid=0&size=c710_u400&quality=100&vuk=-&ft=video" alt=""></p->
+
+        </div>
+    </div>
+    <script>
+        //全局过滤器， 进行时间的格式化
+        Vue.filter('dateFormat', function (dateStr) {
+            //根据给定的字符串 得到特定的时间
+            var dt = new Date(dateStr)
+
+            // yyyy-mm-dd
+            var y = dt.getFullYear()
+            var m = (dt.getMonth() + 1).toString().padStart(2, '0') //获取到的月份0-11
+            var d = dt.getDate().toString().padStart(2, '0')
+            var hh = dt.getHours().toString().padStart(2, '0')
+            var mm = dt.getMinutes().toString().padStart(2, '0')
+            var ss = dt.getSeconds().toString().padStart(2, '0')
+
+            //模板字符串
+            return `${y}-${m}-${d}  ${hh}:${mm}:${ss}`
+
+
+        })
+        //creat example
+        var vm = new Vue({
+            el: '#app', //当前我们的new的实例， 要控制页面上的哪个区域
+            data: {
+                msg: '🐷亲爱的顾老师🎂生日快乐哦',
+                beginTime: new Date("2019-05-01T11:00:00Z"),
+                todayTime: new Date(),
+                //msPerDay : 24 * 60 * 60 * 1000, // 每天的毫秒数
+                // daysLast : (todayTime.getTime() - beginTime.getTime()),
+                //daysLast : beginTime.getTime(),
+                daysLast: getTimeParse("2019-05-01T11:00:00Z", new Date())
+
+
+            }
+        });
+
+        function getTimeParse(faultDate, completeTime) {
+            var stime = Date.parse(new Date(faultDate));
+            var etime = Date.parse(new Date(completeTime));
+            // 两个时间戳相差的毫秒数
+            var usedTime = etime - stime;
+            // 计算相差的天数  
+            var days = Math.floor(usedTime / (24 * 3600 * 1000));
+            // 计算天数后剩余的毫秒数
+            var leave1 = usedTime % (24 * 3600 * 1000);
+            // 计算出小时数  
+            var hours = Math.floor(leave1 / (3600 * 1000));
+            // 计算小时数后剩余的毫秒数
+            var leave2 = leave1 % (3600 * 1000);
+            // 计算相差分钟数
+            var minutes = Math.floor(leave2 / (60 * 1000));
+            //计算分钟后剩余的毫秒数
+            var leave3 = leave2 % (60 * 1000);
+            // 计算相差秒数
+            var seconds = Math.floor(leave3 / 1000);
+            var time = days + "天" + hours.toString().padStart(2, '0') + "时" + minutes.toString().padStart(2, '0') +
+                "分" + seconds.toString().padStart(2, '0') + "秒";
+            return time;
+        }
+    </script>
+
+</body>
+
+</html>
